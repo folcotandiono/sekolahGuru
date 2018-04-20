@@ -62,33 +62,7 @@ public class SoalUjianTambahActivity extends AppCompatActivity {
         soalUjianTambahMataPelajaranPilih.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String, String> param = new HashMap<>();
-                param.put("id", sharedPreferences.getString(ID, null));
-                Call<MataPelajaranResponse> call = apiInterface.getDataMataPelajaran(param);
-                call.enqueue(new Callback<MataPelajaranResponse>() {
-                    @Override
-                    public void onResponse(Call<MataPelajaranResponse> call, Response<MataPelajaranResponse> response) {
-                        final List<MataPelajaran> listMataPelajaran = response.body().getListMataPelajaran();
-
-                        AlertDialog.Builder builderSingle = new AlertDialog.Builder(getApplicationContext());
-
-                        final MataPelajaranAdapter mataPelajaranAdapter = new MataPelajaranAdapter(listMataPelajaran);
-
-                        builderSingle.setAdapter((ListAdapter) mataPelajaranAdapter, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                String namaMataPelajaran = listMataPelajaran.get(which).getNama();
-
-                            }
-                        });
-                        builderSingle.show();
-                    }
-
-                    @Override
-                    public void onFailure(Call<MataPelajaranResponse> call, Throwable t) {
-
-                    }
-                });
+                
             }
         });
     }

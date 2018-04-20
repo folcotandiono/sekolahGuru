@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SoalUjianActivity" />
-        <activity android:name=".SoalUjianTambahActivity"></activity>
+        <activity android:name=".SoalUjianTambahActivity" />
+        <activity android:name=".SoalUjianTambahMataPelajaranActivity"></activity>
     </application>
 
 </manifest>

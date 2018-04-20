@@ -7,13 +7,24 @@
     android:orientation="vertical"
     tools:context="com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/soal_ujian_tambah_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.Toolbar>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/soal_ujian_tambah_mata_pelajaran"
+            android:id="@+id/soal_ujian_tambah_id_mata_pelajaran"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/soal_ujian_tambah_nama_mata_pelajaran"
             android:hint="Mata Pelajaran"
             android:clickable="false"
             android:layout_width="wrap_content"
@@ -30,6 +41,17 @@
     <EditText
         android:id="@+id/soal_ujian_tambah_nama"
         android:hint="Nama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/soal_ujian_tambah_tambah"
+        android:text="Tambah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="*Hanya menambahkan judul ujian, untuk soal-soal bisa ditambah di soal ujian detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

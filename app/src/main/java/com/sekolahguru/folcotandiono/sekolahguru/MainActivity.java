@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), SoalUjianActivity.class);
                         startActivity(intent);
                     }
+                    else if (menuItem.getItemId() == R.id.soal_ujian_detail) {
+                        Intent intent = new Intent(getApplicationContext(), SoalUjianDetailActivity.class);
+                        startActivity(intent);
+                    }
                     homeDrawerLayout.closeDrawers();
                     return true;
                 }

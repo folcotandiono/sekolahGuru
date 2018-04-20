@@ -21,7 +21,9 @@
         </activity>
         <activity android:name=".SoalUjianActivity" />
         <activity android:name=".SoalUjianTambahActivity" />
-        <activity android:name=".SoalUjianTambahMataPelajaranActivity"></activity>
+        <activity android:name=".SoalUjianTambahMataPelajaranActivity" />
+        <activity android:name=".SoalUjianDetailActivity" />
+        <activity android:name=".SoalUjianDetailTambahActivity"></activity>
     </application>
 
 </manifest>

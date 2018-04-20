@@ -11,10 +11,14 @@ public class SoalUjian {
     private String id;
     @SerializedName("id_mata_pelajaran")
     private String idMataPelajaran;
+    @SerializedName("nama_mata_pelajaran")
+    private String namaMataPelajaran;
     @SerializedName("nama")
     private String nama;
     @SerializedName("id_guru")
     private String idGuru;
+    @SerializedName("nama_guru")
+    private String namaGuru;
 
     public String getId() {
         return id;
@@ -32,6 +36,14 @@ public class SoalUjian {
         this.idMataPelajaran = idMataPelajaran;
     }
 
+    public String getNamaMataPelajaran() {
+        return namaMataPelajaran;
+    }
+
+    public void setNamaMataPelajaran(String namaMataPelajaran) {
+        this.namaMataPelajaran = namaMataPelajaran;
+    }
+
     public String getNama() {
         return nama;
     }
@@ -46,5 +58,13 @@ public class SoalUjian {
 
     public void setIdGuru(String idGuru) {
         this.idGuru = idGuru;
+    }
+
+    public String getNamaGuru() {
+        return namaGuru;
+    }
+
+    public void setNamaGuru(String namaGuru) {
+        this.namaGuru = namaGuru;
     }
 }

@@ -21,7 +21,7 @@ public class ApiClient {
 
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:81/sekolah/index.php/")
+                .baseUrl("http://10.0.2.2/sekolah/index.php/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

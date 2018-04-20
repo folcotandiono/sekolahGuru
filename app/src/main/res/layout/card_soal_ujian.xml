@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:text="Nama mata pelajaran : "
+                android:text="Nama soal ujian : "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -45,19 +45,19 @@
 
             <TextView
                 android:text="Haha"
-                android:id="@+id/id_kelas"
+                android:id="@+id/id_mata_pelajaran"
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:text="Nama kelas : "
+                android:text="Nama mata pelajaran : "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:text="Haha"
-                android:id="@+id/nama_kelas"
+                android:id="@+id/nama_mata_pelajaran"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

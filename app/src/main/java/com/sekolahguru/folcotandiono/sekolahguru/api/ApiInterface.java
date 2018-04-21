@@ -4,6 +4,7 @@ import com.sekolahguru.folcotandiono.sekolahguru.model.Guru;
 import com.sekolahguru.folcotandiono.sekolahguru.model.GuruLoginResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.MataPelajaranResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjian;
+import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetail;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetailResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianTambahResponse;
@@ -13,6 +14,7 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 
@@ -36,4 +38,7 @@ public interface ApiInterface {
 
     @POST("guru/tambah_soal_ujian")
     Call<SoalUjianTambahResponse> tambahSoalUjian(@Body SoalUjian soalUjian);
+
+    @POST("guru/tambah_soal_ujian_detail")
+    Call<SoalUjianDetailResponse> tambahSoalUjianDetail(@Body SoalUjianDetail soalUjianDetail);
 }

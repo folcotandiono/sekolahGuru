@@ -95,6 +95,7 @@ public class SoalUjianDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SoalUjianDetailTambahActivity.class);
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                 startActivity(intent);
             }
         });

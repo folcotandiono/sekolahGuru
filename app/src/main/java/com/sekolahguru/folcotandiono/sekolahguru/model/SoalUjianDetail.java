@@ -1,7 +1,10 @@
 package com.sekolahguru.folcotandiono.sekolahguru.model;
 
+import android.graphics.Bitmap;
+
 import com.google.gson.annotations.SerializedName;
 
+import java.io.File;
 import java.util.List;
 
 /**

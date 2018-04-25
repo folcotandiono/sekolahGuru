@@ -14,6 +14,9 @@ import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjian;
 
 import java.util.List;
 
+import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianDetailTambahActivity.ID_SOAL_UJIAN;
+import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianDetailTambahActivity.NAMA_SOAL_UJIAN;
+import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianDetailTambahActivity.SOAL_UJIAN_DETAIL_TAMBAH;
 import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.ID_MATA_PELAJARAN;
 import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.NAMA_MATA_PELAJARAN;
 import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.SOAL_UJIAN_TAMBAH;
@@ -34,20 +37,24 @@ public class SoalUjianAdapter extends RecyclerView.Adapter<SoalUjianAdapter.View
         private TextView nama;
         private TextView idMataPelajaran;
         private TextView namaMataPelajaran;
+        private TextView idGuru;
+        private TextView namaGuru;
         public ViewHolder(View v) {
             super(v);
             id = v.findViewById(R.id.id);
             nama = v.findViewById(R.id.nama);
             idMataPelajaran = v.findViewById(R.id.id_mata_pelajaran);
             namaMataPelajaran = v.findViewById(R.id.nama_mata_pelajaran);
+            idGuru = v.findViewById(R.id.id_guru);
+            namaGuru = v.findViewById(R.id.nama_guru);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    SharedPreferences sharedPreferences = v.getContext().getSharedPreferences(SOAL_UJIAN_TAMBAH, 0);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString(ID_SOAL_UJIAN, id.getText().toString());
-//                    editor.putString(NAMA_SOAL_UJIAN, nama.getText().toString());
-//                    editor.commit();
+                    SharedPreferences sharedPreferences = v.getContext().getSharedPreferences(SOAL_UJIAN_DETAIL_TAMBAH, 0);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(ID_SOAL_UJIAN, id.getText().toString());
+                    editor.putString(NAMA_SOAL_UJIAN, nama.getText().toString());
+                    editor.commit();
                     ((Activity) v.getContext()).finish();
                 }
             });
@@ -78,6 +85,8 @@ public class SoalUjianAdapter extends RecyclerView.Adapter<SoalUjianAdapter.View
         holder.nama.setText(listSoalUjian.get(position).getNama());
         holder.idMataPelajaran.setText(listSoalUjian.get(position).getIdMataPelajaran());
         holder.namaMataPelajaran.setText(listSoalUjian.get(position).getNamaMataPelajaran());
+        holder.idGuru.setText(listSoalUjian.get(position).getIdGuru());
+        holder.namaGuru.setText(listSoalUjian.get(position).getNamaGuru());
     }
 
     // Return the size of your dataset (invoked by the layout manager)

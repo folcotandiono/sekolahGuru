@@ -36,7 +36,7 @@
 
             <Button
                 android:text="Pilih"
-                android:id="@+id/soal_ujian_detail_tambah_soal_ujian_pilih"
+                android:id="@+id/pilih_soal_ujian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -62,7 +62,7 @@
 
             <Button
                 android:text="Pilih"
-                android:id="@+id/jenis_soal_ujian_detail_pilih"
+                android:id="@+id/pilih_jenis_soal_ujian_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -322,6 +322,19 @@
             <ImageView
                 android:id="@+id/pilihan_jawaban_e_gambar"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/kunci_jawaban"
+                android:hint="Kunci Jawaban"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>

@@ -26,7 +26,10 @@
         <activity android:name=".SoalUjianTambahActivity" />
         <activity android:name=".SoalUjianTambahMataPelajaranActivity" />
         <activity android:name=".SoalUjianDetailActivity" />
-        <activity android:name=".SoalUjianDetailTambahActivity"></activity>
+        <activity android:name=".SoalUjianDetailTambahActivity" />
+        <activity android:name=".SoalUjianDetailTambahSoalUjianActivity" />
+        <activity android:name=".SoalUjianDetailTambahJenisSoalUjianDetailActivity" />
+        <activity android:name=".JadwalUjianActivity"></activity>
     </application>
 
 </manifest>

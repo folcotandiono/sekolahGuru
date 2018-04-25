@@ -6,4 +6,7 @@
     <item
         android:id="@+id/soal_ujian_detail"
         android:title="Soal Ujian Detail" />
+    <item
+        android:id="@+id/jadwal_ujian"
+        android:title="Jadwal Ujian" />
 </menu>

@@ -2,6 +2,7 @@ package com.sekolahguru.folcotandiono.sekolahguru.api;
 
 import com.sekolahguru.folcotandiono.sekolahguru.model.Guru;
 import com.sekolahguru.folcotandiono.sekolahguru.model.GuruLoginResponse;
+import com.sekolahguru.folcotandiono.sekolahguru.model.JenisSoalUjianDetailResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.MataPelajaranResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjian;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetail;
@@ -41,4 +42,7 @@ public interface ApiInterface {
 
     @POST("guru/tambah_soal_ujian_detail")
     Call<SoalUjianDetailResponse> tambahSoalUjianDetail(@Body SoalUjianDetail soalUjianDetail);
+
+    @GET("guru/data_jenis_soal_ujian_detail")
+    Call<JenisSoalUjianDetailResponse> getDataJenisSoalUjianDetail(@QueryMap Map<String, String> param);
 }

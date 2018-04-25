@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -85,7 +86,7 @@ public class SoalUjianDetailActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SoalUjianDetailResponse> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
     }
@@ -99,5 +100,16 @@ public class SoalUjianDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

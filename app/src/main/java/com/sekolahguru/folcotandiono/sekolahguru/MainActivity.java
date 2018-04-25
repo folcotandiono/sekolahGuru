@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), SoalUjianDetailActivity.class);
                         startActivity(intent);
                     }
+                    else if (menuItem.getItemId() == R.id.jadwal_ujian) {
+
+                    }
                     homeDrawerLayout.closeDrawers();
                     return true;
                 }

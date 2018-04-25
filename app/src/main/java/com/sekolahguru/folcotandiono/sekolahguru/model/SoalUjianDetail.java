@@ -25,11 +25,11 @@ public class SoalUjianDetail {
     @SerializedName("soal_tulisan")
     private String soalTulisan;
     @SerializedName("soal_gambar")
-    private List<String> soalGambar;
+    private String soalGambar;
     @SerializedName("pilihan_jawaban_tulisan")
-    private List<String> pilihanJawabanTulisan;
+    private String pilihanJawabanTulisan;
     @SerializedName("pilihan_jawaban_gambar")
-    private List<List<String>> pilihanJawabanGambar;
+    private String pilihanJawabanGambar;
     @SerializedName("kunci_jawaban")
     private String kunciJawaban;
 
@@ -81,27 +81,27 @@ public class SoalUjianDetail {
         this.soalTulisan = soalTulisan;
     }
 
-    public List<String> getSoalGambar() {
+    public String getSoalGambar() {
         return soalGambar;
     }
 
-    public void setSoalGambar(List<String> soalGambar) {
+    public void setSoalGambar(String soalGambar) {
         this.soalGambar = soalGambar;
     }
 
-    public List<String> getPilihanJawabanTulisan() {
+    public String getPilihanJawabanTulisan() {
         return pilihanJawabanTulisan;
     }
 
-    public void setPilihanJawabanTulisan(List<String> pilihanJawabanTulisan) {
+    public void setPilihanJawabanTulisan(String pilihanJawabanTulisan) {
         this.pilihanJawabanTulisan = pilihanJawabanTulisan;
     }
 
-    public List<List<String>> getPilihanJawabanGambar() {
+    public String getPilihanJawabanGambar() {
         return pilihanJawabanGambar;
     }
 
-    public void setPilihanJawabanGambar(List<List<String>> pilihanJawabanGambar) {
+    public void setPilihanJawabanGambar(String pilihanJawabanGambar) {
         this.pilihanJawabanGambar = pilihanJawabanGambar;
     }
 

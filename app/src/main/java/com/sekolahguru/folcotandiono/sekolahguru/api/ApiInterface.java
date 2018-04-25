@@ -2,11 +2,18 @@ package com.sekolahguru.folcotandiono.sekolahguru.api;
 
 import com.sekolahguru.folcotandiono.sekolahguru.model.Guru;
 import com.sekolahguru.folcotandiono.sekolahguru.model.GuruLoginResponse;
+import com.sekolahguru.folcotandiono.sekolahguru.model.JadwalUjian;
+import com.sekolahguru.folcotandiono.sekolahguru.model.JadwalUjianResponse;
+import com.sekolahguru.folcotandiono.sekolahguru.model.JadwalUjianTambahResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.JenisSoalUjianDetailResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.MataPelajaranResponse;
+import com.sekolahguru.folcotandiono.sekolahguru.model.PR;
+import com.sekolahguru.folcotandiono.sekolahguru.model.PRResponse;
+import com.sekolahguru.folcotandiono.sekolahguru.model.PRTambahResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjian;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetail;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetailResponse;
+import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetailTambahResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianTambahResponse;
 
@@ -37,12 +44,25 @@ public interface ApiInterface {
     @GET("guru/data_soal_ujian_detail")
     Call<SoalUjianDetailResponse> getDataSoalUjianDetail(@QueryMap Map<String, String> param);
 
+    @GET("guru/data_jenis_soal_ujian_detail")
+    Call<JenisSoalUjianDetailResponse> getDataJenisSoalUjianDetail(@QueryMap Map<String, String> param);
+
+    @GET("guru/data_jadwal_ujian")
+    Call<JadwalUjianResponse> getDataJadwalUjian(@QueryMap Map<String, String> param);
+
+    @GET("guru/data_pr")
+    Call<PRResponse> getDataPR(@QueryMap Map<String, String> param);
+
     @POST("guru/tambah_soal_ujian")
     Call<SoalUjianTambahResponse> tambahSoalUjian(@Body SoalUjian soalUjian);
 
     @POST("guru/tambah_soal_ujian_detail")
-    Call<SoalUjianDetailResponse> tambahSoalUjianDetail(@Body SoalUjianDetail soalUjianDetail);
+    Call<SoalUjianDetailTambahResponse> tambahSoalUjianDetail(@Body SoalUjianDetail soalUjianDetail);
 
-    @GET("guru/data_jenis_soal_ujian_detail")
-    Call<JenisSoalUjianDetailResponse> getDataJenisSoalUjianDetail(@QueryMap Map<String, String> param);
+    @POST("guru/tambah_jadwal_ujian")
+    Call<JadwalUjianTambahResponse> tambahJadwalUjian(@Body JadwalUjian jadwalUjian);
+
+    @POST("guru/tambah_pr")
+    Call<PRTambahResponse> tambahPR(@Body PR pr);
+
 }

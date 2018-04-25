@@ -9,14 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.sekolahguru.folcotandiono.sekolahguru.adapter.MataPelajaranAdapter;
-import com.sekolahguru.folcotandiono.sekolahguru.adapter.SoalUjianAdapter;
-import com.sekolahguru.folcotandiono.sekolahguru.adapter.SoalUjianPilihAdapter;
+import com.sekolahguru.folcotandiono.sekolahguru.adapter.MataPelajaranPilihAdapter;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiClient;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiInterface;
 import com.sekolahguru.folcotandiono.sekolahguru.model.MataPelajaran;
 import com.sekolahguru.folcotandiono.sekolahguru.model.MataPelajaranResponse;
-import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjian;
-import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianResponse;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,18 +26,22 @@ import retrofit2.Response;
 import static com.sekolahguru.folcotandiono.sekolahguru.LoginActivity.ID;
 import static com.sekolahguru.folcotandiono.sekolahguru.LoginActivity.LOGIN;
 
-public class SoalUjianDetailTambahSoalUjianActivity extends AppCompatActivity {
+public class PRTambahMataPelajaranActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private ApiInterface apiInterface;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+    private String idMataPelajaran;
+    private String namaMataPelajaran;
+    private String nama;
+    private String guru;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_soal_ujian_detail_tambah_soal_ujian);
+        setContentView(R.layout.activity_pr_tambah_mata_pelajaran);
 
         initView();
         initObject();
@@ -59,7 +60,12 @@ public class SoalUjianDetailTambahSoalUjianActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Pilih soal ujian");
+        getSupportActionBar().setTitle("Pilih mata pelajaran");
+
+        idMataPelajaran = getIntent().getStringExtra("id_mata_pelajaran");
+        namaMataPelajaran = getIntent().getStringExtra("nama_mata_pelajaran");
+        nama = getIntent().getStringExtra("nama");
+        guru = getIntent().getStringExtra("guru");
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -72,18 +78,19 @@ public class SoalUjianDetailTambahSoalUjianActivity extends AppCompatActivity {
         Map<String, String> param = new HashMap<>();
         param.put(ID, sharedPreferences.getString(ID, null));
 
-        Call<SoalUjianResponse> call = apiInterface.getDataSoalUjian(param);
-        call.enqueue(new Callback<SoalUjianResponse>() {
+        Call<MataPelajaranResponse> call = apiInterface.getDataMataPelajaran(param);
+        call.enqueue(new Callback<MataPelajaranResponse>() {
             @Override
-            public void onResponse(Call<SoalUjianResponse> call, Response<SoalUjianResponse> response) {
+            public void onResponse(Call<MataPelajaranResponse> call, Response<MataPelajaranResponse> response) {
                 // specify an adapter (see also next example)
-                List<SoalUjian> listSoalUjian = response.body().getListSoalUjian();
-                SoalUjianPilihAdapter soalUjianPilihAdapter = new SoalUjianPilihAdapter(listSoalUjian);
-                recyclerView.setAdapter(soalUjianPilihAdapter);
+                List<MataPelajaran> listMataPelajaran = response.body().getListMataPelajaran();
+                MataPelajaranPilihAdapter mataPelajaranPilihAdapter = new MataPelajaranPilihAdapter(listMataPelajaran);
+                recyclerView.setAdapter(mataPelajaranPilihAdapter);
+
             }
 
             @Override
-            public void onFailure(Call<SoalUjianResponse> call, Throwable t) {
+            public void onFailure(Call<MataPelajaranResponse> call, Throwable t) {
                 t.printStackTrace();
             }
         });

@@ -1,7 +1,6 @@
 package com.sekolahguru.folcotandiono.sekolahguru.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sekolahguru.folcotandiono.sekolahguru.R;
-import com.sekolahguru.folcotandiono.sekolahguru.api.ApiInterface;
 import com.sekolahguru.folcotandiono.sekolahguru.model.MataPelajaran;
 
 import java.util.List;
@@ -23,7 +21,7 @@ import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.
  * Created by folcotandiono on 19/04/2018.
  */
 
-public class MataPelajaranAdapter extends RecyclerView.Adapter<MataPelajaranAdapter.ViewHolder> {
+public class MataPelajaranPilihAdapter extends RecyclerView.Adapter<MataPelajaranPilihAdapter.ViewHolder> {
     private List<MataPelajaran> listMataPelajaran;
 
     // Provide a reference to the views for each data item
@@ -44,26 +42,26 @@ public class MataPelajaranAdapter extends RecyclerView.Adapter<MataPelajaranAdap
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    SharedPreferences sharedPreferences = v.getContext().getSharedPreferences(SOAL_UJIAN_TAMBAH, 0);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString(ID_MATA_PELAJARAN, id.getText().toString());
-//                    editor.putString(NAMA_MATA_PELAJARAN, nama.getText().toString());
-//                    editor.commit();
-//                    ((Activity) v.getContext()).finish();
+                    SharedPreferences sharedPreferences = v.getContext().getSharedPreferences(SOAL_UJIAN_TAMBAH, 0);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(ID_MATA_PELAJARAN, id.getText().toString());
+                    editor.putString(NAMA_MATA_PELAJARAN, nama.getText().toString());
+                    editor.commit();
+                    ((Activity) v.getContext()).finish();
                 }
             });
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MataPelajaranAdapter(List<MataPelajaran> listMataPelajaran) {
+    public MataPelajaranPilihAdapter(List<MataPelajaran> listMataPelajaran) {
         this.listMataPelajaran = listMataPelajaran;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MataPelajaranAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
+    public MataPelajaranPilihAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                   int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_mata_pelajaran, parent, false);
         ViewHolder vh = new ViewHolder(v);

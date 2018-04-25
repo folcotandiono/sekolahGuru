@@ -11,11 +11,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.sekolahguru.folcotandiono.sekolahguru.adapter.SoalUjianDetailAdapter;
+import com.sekolahguru.folcotandiono.sekolahguru.adapter.PRAdapter;
+import com.sekolahguru.folcotandiono.sekolahguru.adapter.SoalUjianAdapter;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiClient;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiInterface;
-import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetail;
-import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetailResponse;
+import com.sekolahguru.folcotandiono.sekolahguru.model.PR;
+import com.sekolahguru.folcotandiono.sekolahguru.model.PRResponse;
+import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjian;
+import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianResponse;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,19 +31,20 @@ import retrofit2.Response;
 import static com.sekolahguru.folcotandiono.sekolahguru.LoginActivity.ID;
 import static com.sekolahguru.folcotandiono.sekolahguru.LoginActivity.LOGIN;
 
-public class SoalUjianDetailActivity extends AppCompatActivity {
+public class PRActivity extends AppCompatActivity {
 
-    private Toolbar soalUjianDetailToolbar;
-    private Button soalUjianDetailTambah;
-    private RecyclerView soalUjianDetailRecyclerView;
+    private Toolbar toolbar;
+    private Button tambah;
+    private RecyclerView recyclerView;
 
     private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
     private ApiInterface apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_soal_ujian_detail);
+        setContentView(R.layout.activity_pr);
 
         initView();
         initObject();
@@ -48,40 +52,36 @@ public class SoalUjianDetailActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        soalUjianDetailToolbar = findViewById(R.id.soal_ujian_detail_toolbar);
-        soalUjianDetailTambah = findViewById(R.id.soal_ujian_detail_tambah);
-        soalUjianDetailRecyclerView = findViewById(R.id.soal_ujian_detail_recycler_view);
+        toolbar = findViewById(R.id.toolbar);
+        tambah = findViewById(R.id.tambah);
+        recyclerView = findViewById(R.id.recycler_view);
     }
 
     private void initObject() {
-        apiInterface = ApiClient.getClient().create(ApiInterface.class);
-
-        setSupportActionBar(soalUjianDetailToolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Soal Ujian Detail");
+        getSupportActionBar().setTitle("PR");
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        soalUjianDetailRecyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        RecyclerView.LayoutManager soalUjianDetailLayoutManager = new LinearLayoutManager(this);
-        soalUjianDetailRecyclerView.setLayoutManager(soalUjianDetailLayoutManager);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
-
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
     }
 
     private void initListener() {
-        soalUjianDetailTambah.setOnClickListener(new View.OnClickListener() {
+        tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SoalUjianDetailTambahActivity.class);
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                Intent intent = new Intent(getApplicationContext(), PRTambahActivity.class);
                 startActivity(intent);
             }
         });
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -96,25 +96,24 @@ public class SoalUjianDetailActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         sharedPreferences = getSharedPreferences(LOGIN, 0);
 
         Map<String, String> param = new HashMap<>();
         param.put(ID, sharedPreferences.getString(ID, null));
 
-        Call<SoalUjianDetailResponse> call = apiInterface.getDataSoalUjianDetail(param);
-        call.enqueue(new Callback<SoalUjianDetailResponse>() {
+        Call<PRResponse> call = apiInterface.getDataPR(param);
+        call.enqueue(new Callback<PRResponse>() {
             @Override
-            public void onResponse(Call<SoalUjianDetailResponse> call, Response<SoalUjianDetailResponse> response) {
-                List<SoalUjianDetail> listSoalUjianDetail = response.body().getListSoalUjianDetail();
-                // specify an adapter (see also next example)
-                SoalUjianDetailAdapter soalUjianDetailAdapter = new SoalUjianDetailAdapter(listSoalUjianDetail);
-                soalUjianDetailRecyclerView.setAdapter(soalUjianDetailAdapter);
-
+            public void onResponse(Call<PRResponse> call, Response<PRResponse> response) {
+                List<PR> listPR = response.body().getListPR();
+                PRAdapter prAdapter = new PRAdapter(listPR);
+                recyclerView.setAdapter(prAdapter);
             }
 
             @Override
-            public void onFailure(Call<SoalUjianDetailResponse> call, Throwable t) {
-                t.printStackTrace();
+            public void onFailure(Call<PRResponse> call, Throwable t) {
+
             }
         });
     }

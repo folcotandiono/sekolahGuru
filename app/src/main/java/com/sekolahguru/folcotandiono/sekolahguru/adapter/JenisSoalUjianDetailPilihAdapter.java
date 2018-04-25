@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.sekolahguru.folcotandiono.sekolahguru.R;
 import com.sekolahguru.folcotandiono.sekolahguru.model.JenisSoalUjianDetail;
-import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetail;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianDetailTambahAct
  * Created by folcotandiono on 23/04/2018.
  */
 
-public class JenisSoalUjianDetailAdapter extends RecyclerView.Adapter<JenisSoalUjianDetailAdapter.ViewHolder> {
+public class JenisSoalUjianDetailPilihAdapter extends RecyclerView.Adapter<JenisSoalUjianDetailPilihAdapter.ViewHolder> {
     private List<JenisSoalUjianDetail> listJenisSoalUjianDetail;
 
     // Provide a reference to the views for each data item
@@ -39,35 +38,35 @@ public class JenisSoalUjianDetailAdapter extends RecyclerView.Adapter<JenisSoalU
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    SharedPreferences sharedPreferences = v.getContext().getSharedPreferences(SOAL_UJIAN_DETAIL_TAMBAH, 0);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString(ID_JENIS_SOAL_UJIAN_DETAIL, id.getText().toString());
-//                    editor.putString(NAMA_JENIS_SOAL_UJIAN_DETAIL, nama.getText().toString());
-//                    editor.commit();
-//                    ((Activity) v.getContext()).finish();
+                    SharedPreferences sharedPreferences = v.getContext().getSharedPreferences(SOAL_UJIAN_DETAIL_TAMBAH, 0);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(ID_JENIS_SOAL_UJIAN_DETAIL, id.getText().toString());
+                    editor.putString(NAMA_JENIS_SOAL_UJIAN_DETAIL, nama.getText().toString());
+                    editor.commit();
+                    ((Activity) v.getContext()).finish();
                 }
             });
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public JenisSoalUjianDetailAdapter(List<JenisSoalUjianDetail> listJenisSoalUjianDetail) {
+    public JenisSoalUjianDetailPilihAdapter(List<JenisSoalUjianDetail> listJenisSoalUjianDetail) {
         this.listJenisSoalUjianDetail = listJenisSoalUjianDetail;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public JenisSoalUjianDetailAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                                int viewType) {
+    public JenisSoalUjianDetailPilihAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                          int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_jenis_soal_ujian_detail, parent, false);
-        JenisSoalUjianDetailAdapter.ViewHolder vh = new JenisSoalUjianDetailAdapter.ViewHolder(v);
+        JenisSoalUjianDetailPilihAdapter.ViewHolder vh = new JenisSoalUjianDetailPilihAdapter.ViewHolder(v);
         return vh;
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(JenisSoalUjianDetailAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(JenisSoalUjianDetailPilihAdapter.ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.id.setText(listJenisSoalUjianDetail.get(position).getId());

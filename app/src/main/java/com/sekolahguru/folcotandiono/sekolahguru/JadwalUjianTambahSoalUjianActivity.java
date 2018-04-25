@@ -8,13 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.sekolahguru.folcotandiono.sekolahguru.adapter.MataPelajaranAdapter;
 import com.sekolahguru.folcotandiono.sekolahguru.adapter.SoalUjianAdapter;
 import com.sekolahguru.folcotandiono.sekolahguru.adapter.SoalUjianPilihAdapter;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiClient;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiInterface;
-import com.sekolahguru.folcotandiono.sekolahguru.model.MataPelajaran;
-import com.sekolahguru.folcotandiono.sekolahguru.model.MataPelajaranResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjian;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianResponse;
 
@@ -29,7 +26,7 @@ import retrofit2.Response;
 import static com.sekolahguru.folcotandiono.sekolahguru.LoginActivity.ID;
 import static com.sekolahguru.folcotandiono.sekolahguru.LoginActivity.LOGIN;
 
-public class SoalUjianDetailTambahSoalUjianActivity extends AppCompatActivity {
+public class JadwalUjianTambahSoalUjianActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private RecyclerView recyclerView;
@@ -40,7 +37,7 @@ public class SoalUjianDetailTambahSoalUjianActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_soal_ujian_detail_tambah_soal_ujian);
+        setContentView(R.layout.activity_jadwal_ujian_tambah_soal_ujian);
 
         initView();
         initObject();

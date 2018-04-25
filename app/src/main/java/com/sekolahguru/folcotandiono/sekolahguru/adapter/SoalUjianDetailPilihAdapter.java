@@ -1,16 +1,13 @@
 package com.sekolahguru.folcotandiono.sekolahguru.adapter;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sekolahguru.folcotandiono.sekolahguru.R;
-import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjian;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetail;
 
 import java.util.List;
@@ -19,7 +16,7 @@ import java.util.List;
  * Created by folcotandiono on 20/04/2018.
  */
 
-public class SoalUjianDetailAdapter extends RecyclerView.Adapter<SoalUjianDetailAdapter.ViewHolder> {
+public class SoalUjianDetailPilihAdapter extends RecyclerView.Adapter<SoalUjianDetailPilihAdapter.ViewHolder> {
     private List<SoalUjianDetail> listSoalUjianDetail;
 
     // Provide a reference to the views for each data item
@@ -48,21 +45,21 @@ public class SoalUjianDetailAdapter extends RecyclerView.Adapter<SoalUjianDetail
 //                    SharedPreferences.Editor editor = sharedPreferences.edit();
 //                    editor.putString(ID_SOAL_UJIAN_DETAIL, id.getText().toString());
 //                    editor.commit();
-//                    ((Activity) v.getContext()).finish();
+                    ((Activity) v.getContext()).finish();
                 }
             });
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public SoalUjianDetailAdapter(List<SoalUjianDetail> listSoalUjianDetail) {
+    public SoalUjianDetailPilihAdapter(List<SoalUjianDetail> listSoalUjianDetail) {
         this.listSoalUjianDetail = listSoalUjianDetail;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public SoalUjianDetailAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                          int viewType) {
+    public SoalUjianDetailPilihAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                     int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_soal_ujian_detail, parent, false);
         ViewHolder vh = new ViewHolder(v);

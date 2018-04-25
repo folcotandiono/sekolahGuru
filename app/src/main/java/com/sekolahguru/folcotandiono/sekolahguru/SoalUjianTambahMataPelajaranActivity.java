@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.sekolahguru.folcotandiono.sekolahguru.adapter.MataPelajaranAdapter;
+import com.sekolahguru.folcotandiono.sekolahguru.adapter.MataPelajaranPilihAdapter;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiClient;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiInterface;
 import com.sekolahguru.folcotandiono.sekolahguru.model.MataPelajaran;
@@ -83,8 +84,8 @@ public class SoalUjianTambahMataPelajaranActivity extends AppCompatActivity {
             public void onResponse(Call<MataPelajaranResponse> call, Response<MataPelajaranResponse> response) {
                 // specify an adapter (see also next example)
                 List<MataPelajaran> listMataPelajaran = response.body().getListMataPelajaran();
-                MataPelajaranAdapter mataPelajaranAdapter = new MataPelajaranAdapter(listMataPelajaran);
-                soalUjianTambahMataPelajaranRecyclerView.setAdapter(mataPelajaranAdapter);
+                MataPelajaranPilihAdapter mataPelajaranPilihAdapter = new MataPelajaranPilihAdapter(listMataPelajaran);
+                soalUjianTambahMataPelajaranRecyclerView.setAdapter(mataPelajaranPilihAdapter);
 
             }
 

@@ -67,26 +67,7 @@ public class SoalUjianActivity extends AppCompatActivity {
         RecyclerView.LayoutManager soalUjianLayoutManager = new LinearLayoutManager(this);
         soalUjianRecyclerView.setLayoutManager(soalUjianLayoutManager);
 
-        sharedPreferences = getSharedPreferences(LOGIN, 0);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-
-        Map<String, String> param = new HashMap<>();
-        param.put(ID, sharedPreferences.getString(ID, null));
-
-        Call<SoalUjianResponse> call = apiInterface.getDataSoalUjian(param);
-        call.enqueue(new Callback<SoalUjianResponse>() {
-            @Override
-            public void onResponse(Call<SoalUjianResponse> call, Response<SoalUjianResponse> response) {
-                List<SoalUjian> listSoalUjian = response.body().getListSoalUjian();
-                SoalUjianAdapter soalUjianAdapter = new SoalUjianAdapter(listSoalUjian);
-                soalUjianRecyclerView.setAdapter(soalUjianAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<SoalUjianResponse> call, Throwable t) {
-
-            }
-        });
     }
 
     private void initListener() {
@@ -107,5 +88,30 @@ public class SoalUjianActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        sharedPreferences = getSharedPreferences(LOGIN, 0);
+
+        Map<String, String> param = new HashMap<>();
+        param.put(ID, sharedPreferences.getString(ID, null));
+
+        Call<SoalUjianResponse> call = apiInterface.getDataSoalUjian(param);
+        call.enqueue(new Callback<SoalUjianResponse>() {
+            @Override
+            public void onResponse(Call<SoalUjianResponse> call, Response<SoalUjianResponse> response) {
+                List<SoalUjian> listSoalUjian = response.body().getListSoalUjian();
+                SoalUjianAdapter soalUjianAdapter = new SoalUjianAdapter(listSoalUjian);
+                soalUjianRecyclerView.setAdapter(soalUjianAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<SoalUjianResponse> call, Throwable t) {
+
+            }
+        });
     }
 }

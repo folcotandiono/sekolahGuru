@@ -24,6 +24,7 @@ import com.sekolahguru.folcotandiono.sekolahguru.api.ApiClient;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiInterface;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetail;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetailResponse;
+import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetailTambahResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -290,15 +291,15 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
 
                 soalUjianDetail.setKunciJawaban(kunciJawaban.getText().toString());
 
-                Call<SoalUjianDetailResponse> call = apiInterface.tambahSoalUjianDetail(soalUjianDetail);
-                call.enqueue(new Callback<SoalUjianDetailResponse>() {
+                Call<SoalUjianDetailTambahResponse> call = apiInterface.tambahSoalUjianDetail(soalUjianDetail);
+                call.enqueue(new Callback<SoalUjianDetailTambahResponse>() {
                     @Override
-                    public void onResponse(Call<SoalUjianDetailResponse> call, Response<SoalUjianDetailResponse> response) {
+                    public void onResponse(Call<SoalUjianDetailTambahResponse> call, Response<SoalUjianDetailTambahResponse> response) {
                         Toast.makeText(SoalUjianDetailTambahActivity.this, "Soal ujian detail sudah ditambah", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
-                    public void onFailure(Call<SoalUjianDetailResponse> call, Throwable t) {
+                    public void onFailure(Call<SoalUjianDetailTambahResponse> call, Throwable t) {
 
                     }
                 });

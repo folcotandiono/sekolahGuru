@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.sekolahguru.folcotandiono.sekolahguru.adapter.JenisSoalUjianDetailAdapter;
+import com.sekolahguru.folcotandiono.sekolahguru.adapter.JenisSoalUjianDetailPilihAdapter;
 import com.sekolahguru.folcotandiono.sekolahguru.adapter.SoalUjianAdapter;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiClient;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiInterface;
@@ -77,8 +78,8 @@ public class SoalUjianDetailTambahJenisSoalUjianDetailActivity extends AppCompat
             public void onResponse(Call<JenisSoalUjianDetailResponse> call, Response<JenisSoalUjianDetailResponse> response) {
                 // specify an adapter (see also next example)
                 List<JenisSoalUjianDetail> listJenisSoalUjianDetail = response.body().getListJenisSoalUjianDetail();
-                JenisSoalUjianDetailAdapter jenisSoalUjianDetailAdapter = new JenisSoalUjianDetailAdapter(listJenisSoalUjianDetail);
-                recyclerView.setAdapter(jenisSoalUjianDetailAdapter);
+                JenisSoalUjianDetailPilihAdapter jenisSoalUjianDetailPilihAdapter = new JenisSoalUjianDetailPilihAdapter(listJenisSoalUjianDetail);
+                recyclerView.setAdapter(jenisSoalUjianDetailPilihAdapter);
             }
 
             @Override

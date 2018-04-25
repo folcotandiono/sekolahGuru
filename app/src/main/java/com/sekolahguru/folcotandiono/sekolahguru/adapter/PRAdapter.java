@@ -10,24 +10,20 @@ import android.widget.TextView;
 
 import com.sekolahguru.folcotandiono.sekolahguru.R;
 import com.sekolahguru.folcotandiono.sekolahguru.model.MataPelajaran;
-import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjian;
+import com.sekolahguru.folcotandiono.sekolahguru.model.PR;
 
 import java.util.List;
 
-import static com.sekolahguru.folcotandiono.sekolahguru.JadwalUjianTambahActivity.JADWAL_UJIAN_TAMBAH;
-import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianDetailTambahActivity.ID_SOAL_UJIAN;
-import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianDetailTambahActivity.NAMA_SOAL_UJIAN;
-import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianDetailTambahActivity.SOAL_UJIAN_DETAIL_TAMBAH;
 import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.ID_MATA_PELAJARAN;
 import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.NAMA_MATA_PELAJARAN;
 import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.SOAL_UJIAN_TAMBAH;
 
 /**
- * Created by folcotandiono on 20/04/2018.
+ * Created by folcotandiono on 4/25/2018.
  */
 
-public class SoalUjianAdapter extends RecyclerView.Adapter<SoalUjianAdapter.ViewHolder> {
-    private List<SoalUjian> listSoalUjian;
+public class PRAdapter extends RecyclerView.Adapter<PRAdapter.ViewHolder> {
+    private List<PR> listPR;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -36,30 +32,23 @@ public class SoalUjianAdapter extends RecyclerView.Adapter<SoalUjianAdapter.View
         // each data item is just a string in this case
         private TextView id;
         private TextView nama;
+        private TextView deskripsi;
         private TextView idMataPelajaran;
         private TextView namaMataPelajaran;
-        private TextView idGuru;
-        private TextView namaGuru;
         public ViewHolder(View v) {
             super(v);
             id = v.findViewById(R.id.id);
             nama = v.findViewById(R.id.nama);
+            deskripsi = v.findViewById(R.id.deskripsi);
             idMataPelajaran = v.findViewById(R.id.id_mata_pelajaran);
             namaMataPelajaran = v.findViewById(R.id.nama_mata_pelajaran);
-            idGuru = v.findViewById(R.id.id_guru);
-            namaGuru = v.findViewById(R.id.nama_guru);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    SharedPreferences sharedPreferences = v.getContext().getSharedPreferences(SOAL_UJIAN_DETAIL_TAMBAH, 0);
+//                    SharedPreferences sharedPreferences = v.getContext().getSharedPreferences(SOAL_UJIAN_TAMBAH, 0);
 //                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString(ID_SOAL_UJIAN, id.getText().toString());
-//                    editor.putString(NAMA_SOAL_UJIAN, nama.getText().toString());
-//                    editor.commit();
-//                    sharedPreferences = v.getContext().getSharedPreferences(JADWAL_UJIAN_TAMBAH, 0);
-//                    editor = sharedPreferences.edit();
-//                    editor.putString(ID_SOAL_UJIAN, id.getText().toString());
-//                    editor.putString(NAMA_SOAL_UJIAN, nama.getText().toString());
+//                    editor.putString(ID_MATA_PELAJARAN, id.getText().toString());
+//                    editor.putString(NAMA_MATA_PELAJARAN, nama.getText().toString());
 //                    editor.commit();
 //                    ((Activity) v.getContext()).finish();
                 }
@@ -68,16 +57,16 @@ public class SoalUjianAdapter extends RecyclerView.Adapter<SoalUjianAdapter.View
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public SoalUjianAdapter(List<SoalUjian> listSoalUjian) {
-        this.listSoalUjian = listSoalUjian;
+    public PRAdapter(List<PR> listPR) {
+        this.listPR = listPR;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public SoalUjianAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+    public PRAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                               int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_soal_ujian, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_pr, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -87,17 +76,16 @@ public class SoalUjianAdapter extends RecyclerView.Adapter<SoalUjianAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.id.setText(listSoalUjian.get(position).getId());
-        holder.nama.setText(listSoalUjian.get(position).getNama());
-        holder.idMataPelajaran.setText(listSoalUjian.get(position).getIdMataPelajaran());
-        holder.namaMataPelajaran.setText(listSoalUjian.get(position).getNamaMataPelajaran());
-        holder.idGuru.setText(listSoalUjian.get(position).getIdGuru());
-        holder.namaGuru.setText(listSoalUjian.get(position).getNamaGuru());
+        holder.id.setText(listPR.get(position).getId());
+        holder.nama.setText(listPR.get(position).getNama());
+        holder.idMataPelajaran.setText(listPR.get(position).getIdMataPelajaran());
+        holder.namaMataPelajaran.setText(listPR.get(position).getNamaMataPelajaran());
+        holder.deskripsi.setText(listPR.get(position).getDeskripsi());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return listSoalUjian.size();
+        return listPR.size();
     }
 }

@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sekolahguru.folcotandiono.sekolahguru.R;
-import com.sekolahguru.folcotandiono.sekolahguru.model.MataPelajaran;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjian;
 
 import java.util.List;
@@ -18,15 +17,12 @@ import static com.sekolahguru.folcotandiono.sekolahguru.JadwalUjianTambahActivit
 import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianDetailTambahActivity.ID_SOAL_UJIAN;
 import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianDetailTambahActivity.NAMA_SOAL_UJIAN;
 import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianDetailTambahActivity.SOAL_UJIAN_DETAIL_TAMBAH;
-import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.ID_MATA_PELAJARAN;
-import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.NAMA_MATA_PELAJARAN;
-import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.SOAL_UJIAN_TAMBAH;
 
 /**
  * Created by folcotandiono on 20/04/2018.
  */
 
-public class SoalUjianAdapter extends RecyclerView.Adapter<SoalUjianAdapter.ViewHolder> {
+public class SoalUjianPilihAdapter extends RecyclerView.Adapter<SoalUjianPilihAdapter.ViewHolder> {
     private List<SoalUjian> listSoalUjian;
 
     // Provide a reference to the views for each data item
@@ -51,31 +47,31 @@ public class SoalUjianAdapter extends RecyclerView.Adapter<SoalUjianAdapter.View
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    SharedPreferences sharedPreferences = v.getContext().getSharedPreferences(SOAL_UJIAN_DETAIL_TAMBAH, 0);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString(ID_SOAL_UJIAN, id.getText().toString());
-//                    editor.putString(NAMA_SOAL_UJIAN, nama.getText().toString());
-//                    editor.commit();
-//                    sharedPreferences = v.getContext().getSharedPreferences(JADWAL_UJIAN_TAMBAH, 0);
-//                    editor = sharedPreferences.edit();
-//                    editor.putString(ID_SOAL_UJIAN, id.getText().toString());
-//                    editor.putString(NAMA_SOAL_UJIAN, nama.getText().toString());
-//                    editor.commit();
-//                    ((Activity) v.getContext()).finish();
+                    SharedPreferences sharedPreferences = v.getContext().getSharedPreferences(SOAL_UJIAN_DETAIL_TAMBAH, 0);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(ID_SOAL_UJIAN, id.getText().toString());
+                    editor.putString(NAMA_SOAL_UJIAN, nama.getText().toString());
+                    editor.commit();
+                    sharedPreferences = v.getContext().getSharedPreferences(JADWAL_UJIAN_TAMBAH, 0);
+                    editor = sharedPreferences.edit();
+                    editor.putString(ID_SOAL_UJIAN, id.getText().toString());
+                    editor.putString(NAMA_SOAL_UJIAN, nama.getText().toString());
+                    editor.commit();
+                    ((Activity) v.getContext()).finish();
                 }
             });
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public SoalUjianAdapter(List<SoalUjian> listSoalUjian) {
+    public SoalUjianPilihAdapter(List<SoalUjian> listSoalUjian) {
         this.listSoalUjian = listSoalUjian;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public SoalUjianAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                              int viewType) {
+    public SoalUjianPilihAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                               int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_soal_ujian, parent, false);
         ViewHolder vh = new ViewHolder(v);

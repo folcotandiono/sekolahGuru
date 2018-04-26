@@ -1,5 +1,6 @@
 package com.sekolahguru.folcotandiono.sekolahguru;
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.speech.RecognizerIntent;
 
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiClient;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiInterface;
@@ -31,6 +33,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,6 +53,7 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
     private static final int CAMERA_PILIHAN_JAWABAN_D_GAMBAR = 9;
     private static final int GALLERY_PILIHAN_JAWABAN_E_GAMBAR = 10;
     private static final int CAMERA_PILIHAN_JAWABAN_E_GAMBAR = 11;
+    private static final int REKAM = 12;
 
     public static String SOAL_UJIAN_DETAIL_TAMBAH = "soal_ujian_detail_tambah";
     public static String ID_SOAL_UJIAN = "id_soal_ujian";
@@ -66,6 +70,7 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
     private Button pilihJenisSoalUjianDetail;
 
     private EditText soalTulisan;
+    private Button mic;
     private Button soalGambarPilih;
     private ImageView soalGambar;
 
@@ -117,6 +122,7 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
         pilihJenisSoalUjianDetail = findViewById(R.id.pilih_jenis_soal_ujian_detail);
 
         soalTulisan = findViewById(R.id.soal_tulisan);
+        mic = findViewById(R.id.mic);
         soalGambarPilih = findViewById(R.id.soal_gambar_pilih);
         soalGambar = findViewById(R.id.soal_gambar);
 
@@ -166,6 +172,24 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SoalUjianDetailTambahJenisSoalUjianDetailActivity.class);
                 startActivity(intent);
+            }
+        });
+        mic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                        RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                        "Soal");
+                try {
+                    startActivityForResult(intent, REKAM);
+                } catch (ActivityNotFoundException a) {
+                    Toast.makeText(getApplicationContext(),
+                            "tidak disupport",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
         soalGambarPilih.setOnClickListener(new View.OnClickListener() {
@@ -671,6 +695,13 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
             pilihanJawabanEGambar.setImageBitmap(thumbnail);
 //            saveImage(thumbnail);
 //            Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
+        } else if (requestCode == REKAM) {
+            if (resultCode == RESULT_OK && null != data) {
+
+                ArrayList<String> result = data
+                        .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                soalTulisan.setText(result.get(0));
+            }
         }
     }
 

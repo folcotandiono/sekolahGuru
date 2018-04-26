@@ -13,6 +13,8 @@ import com.sekolahguru.folcotandiono.sekolahguru.model.MataPelajaran;
 
 import java.util.List;
 
+import static com.sekolahguru.folcotandiono.sekolahguru.MateriPelajaranTambahActivity.MATERI_PELAJARAN_TAMBAH;
+import static com.sekolahguru.folcotandiono.sekolahguru.PRTambahActivity.PR_TAMBAH;
 import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.ID_MATA_PELAJARAN;
 import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.NAMA_MATA_PELAJARAN;
 import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.SOAL_UJIAN_TAMBAH;
@@ -44,6 +46,16 @@ public class MataPelajaranPilihAdapter extends RecyclerView.Adapter<MataPelajara
                 public void onClick(View v) {
                     SharedPreferences sharedPreferences = v.getContext().getSharedPreferences(SOAL_UJIAN_TAMBAH, 0);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(ID_MATA_PELAJARAN, id.getText().toString());
+                    editor.putString(NAMA_MATA_PELAJARAN, nama.getText().toString());
+                    editor.commit();
+                    sharedPreferences = v.getContext().getSharedPreferences(PR_TAMBAH, 0);
+                    editor = sharedPreferences.edit();
+                    editor.putString(ID_MATA_PELAJARAN, id.getText().toString());
+                    editor.putString(NAMA_MATA_PELAJARAN, nama.getText().toString());
+                    editor.commit();
+                    sharedPreferences = v.getContext().getSharedPreferences(MATERI_PELAJARAN_TAMBAH, 0);
+                    editor = sharedPreferences.edit();
                     editor.putString(ID_MATA_PELAJARAN, id.getText().toString());
                     editor.putString(NAMA_MATA_PELAJARAN, nama.getText().toString());
                     editor.commit();

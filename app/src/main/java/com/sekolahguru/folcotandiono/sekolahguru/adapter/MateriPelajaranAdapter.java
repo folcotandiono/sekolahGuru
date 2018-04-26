@@ -1,7 +1,5 @@
 package com.sekolahguru.folcotandiono.sekolahguru.adapter;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,22 +7,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sekolahguru.folcotandiono.sekolahguru.R;
-import com.sekolahguru.folcotandiono.sekolahguru.model.MataPelajaran;
-import com.sekolahguru.folcotandiono.sekolahguru.model.PR;
+import com.sekolahguru.folcotandiono.sekolahguru.model.MateriPelajaranGet;
 import com.sekolahguru.folcotandiono.sekolahguru.model.PRGet;
 
 import java.util.List;
-
-import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.ID_MATA_PELAJARAN;
-import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.NAMA_MATA_PELAJARAN;
-import static com.sekolahguru.folcotandiono.sekolahguru.SoalUjianTambahActivity.SOAL_UJIAN_TAMBAH;
 
 /**
  * Created by folcotandiono on 4/25/2018.
  */
 
-public class PRAdapter extends RecyclerView.Adapter<PRAdapter.ViewHolder> {
-    private List<PRGet> listPR;
+public class MateriPelajaranAdapter extends RecyclerView.Adapter<MateriPelajaranAdapter.ViewHolder> {
+    private List<MateriPelajaranGet> listMateriPelajaran;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -58,16 +51,16 @@ public class PRAdapter extends RecyclerView.Adapter<PRAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public PRAdapter(List<PRGet> listPR) {
-        this.listPR = listPR;
+    public MateriPelajaranAdapter(List<MateriPelajaranGet> listMateriPelajaran) {
+        this.listMateriPelajaran = listMateriPelajaran;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public PRAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                              int viewType) {
+    public MateriPelajaranAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                                int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_pr, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_materi_pelajaran, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -77,16 +70,16 @@ public class PRAdapter extends RecyclerView.Adapter<PRAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.id.setText(listPR.get(position).getId());
-        holder.nama.setText(listPR.get(position).getNama());
-        holder.idMataPelajaran.setText(listPR.get(position).getIdMataPelajaran());
-        holder.namaMataPelajaran.setText(listPR.get(position).getNamaMataPelajaran());
-        holder.deskripsi.setText(listPR.get(position).getDeskripsi());
+        holder.id.setText(listMateriPelajaran.get(position).getId());
+        holder.nama.setText(listMateriPelajaran.get(position).getNama());
+        holder.idMataPelajaran.setText(listMateriPelajaran.get(position).getIdMataPelajaran());
+        holder.namaMataPelajaran.setText(listMateriPelajaran.get(position).getNamaMataPelajaran());
+        holder.deskripsi.setText(listMateriPelajaran.get(position).getDeskripsi());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return listPR.size();
+        return listMateriPelajaran.size();
     }
 }

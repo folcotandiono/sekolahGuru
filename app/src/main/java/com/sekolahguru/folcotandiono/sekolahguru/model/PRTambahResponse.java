@@ -9,14 +9,14 @@ import java.util.List;
  */
 
 public class PRTambahResponse {
-    @SerializedName("list_pr")
-    public List<PR> listPr;
+    @SerializedName("message")
+    private String message;
 
-    public List<PR> getListPr() {
-        return listPr;
+    public String getMessage() {
+        return message;
     }
 
-    public void setListPr(List<PR> listPr) {
-        this.listPr = listPr;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

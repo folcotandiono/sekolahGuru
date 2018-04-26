@@ -98,6 +98,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), PRActivity.class);
                         startActivity(intent);
                     }
+                    else if (menuItem.getItemId() == R.id.materi_pelajaran) {
+                        Intent intent = new Intent(getApplicationContext(), MateriPelajaranActivity.class);
+                        startActivity(intent);
+                    }
                     homeDrawerLayout.closeDrawers();
                     return true;
                 }

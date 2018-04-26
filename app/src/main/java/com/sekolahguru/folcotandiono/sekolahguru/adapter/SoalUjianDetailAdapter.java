@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.sekolahguru.folcotandiono.sekolahguru.R;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjian;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetail;
+import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetailGet;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
  */
 
 public class SoalUjianDetailAdapter extends RecyclerView.Adapter<SoalUjianDetailAdapter.ViewHolder> {
-    private List<SoalUjianDetail> listSoalUjianDetail;
+    private List<SoalUjianDetailGet> listSoalUjianDetail;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -55,7 +56,7 @@ public class SoalUjianDetailAdapter extends RecyclerView.Adapter<SoalUjianDetail
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public SoalUjianDetailAdapter(List<SoalUjianDetail> listSoalUjianDetail) {
+    public SoalUjianDetailAdapter(List<SoalUjianDetailGet> listSoalUjianDetail) {
         this.listSoalUjianDetail = listSoalUjianDetail;
     }
 

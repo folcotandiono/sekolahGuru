@@ -6,10 +6,10 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.MenuItem;
@@ -21,10 +21,10 @@ import android.widget.Toast;
 
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiClient;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiInterface;
+import com.sekolahguru.folcotandiono.sekolahguru.model.MateriPelajaran;
+import com.sekolahguru.folcotandiono.sekolahguru.model.MateriPelajaranTambahResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.PR;
 import com.sekolahguru.folcotandiono.sekolahguru.model.PRTambahResponse;
-import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetail;
-import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetailResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -35,12 +35,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PRTambahActivity extends AppCompatActivity {
+public class MateriPelajaranTambahActivity extends AppCompatActivity {
 
     private static final int GALLERY_GAMBAR = 0;
     private static final int CAMERA_GAMBAR = 1;
 
-    public static String PR_TAMBAH = "pr_tambah";
+    public static String MATERI_PELAJARAN_TAMBAH = "materi_pelajaran_tambah";
     public static String ID_MATA_PELAJARAN = "id_mata_pelajaran";
     public static String NAMA_MATA_PELAJARAN = "nama_mata_pelajaran";
 
@@ -62,7 +62,7 @@ public class PRTambahActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pr_tambah);
+        setContentView(R.layout.activity_materi_pelajaran_tambah);
 
         initView();
         initObject();
@@ -87,14 +87,14 @@ public class PRTambahActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Tambah PR");
+        getSupportActionBar().setTitle("Tambah Materi Pelajaran");
     }
 
     private void initListener() {
         pilihMataPelajaran.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PRTambahMataPelajaranActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MateriPelajaranTambahMataPelajaranActivity.class);
                 startActivity(intent);
             }
         });
@@ -108,22 +108,22 @@ public class PRTambahActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (idMataPelajaran.getText().toString().isEmpty()) {
-                    Toast.makeText(PRTambahActivity.this, "Mata pelajaran kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MateriPelajaranTambahActivity.this, "Mata pelajaran kosong", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (nama.getText().toString().isEmpty()) {
-                    Toast.makeText(PRTambahActivity.this, "Nama kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MateriPelajaranTambahActivity.this, "Nama kosong", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (deskripsi.getText().toString().isEmpty()) {
-                    Toast.makeText(PRTambahActivity.this, "Deskripsi kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MateriPelajaranTambahActivity.this, "Deskripsi kosong", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                PR pr = new PR();
-                pr.setIdMataPelajaran(idMataPelajaran.getText().toString());
-                pr.setNama(nama.getText().toString());
-                pr.setDeskripsi(deskripsi.getText().toString());
+                MateriPelajaran materiPelajaran = new MateriPelajaran();
+                materiPelajaran.setIdMataPelajaran(idMataPelajaran.getText().toString());
+                materiPelajaran.setNama(nama.getText().toString());
+                materiPelajaran.setDeskripsi(deskripsi.getText().toString());
 
                 List<String> listGambar = new ArrayList<>();
 
@@ -135,17 +135,17 @@ public class PRTambahActivity extends AppCompatActivity {
                     listGambar.add(encodedImage);
                 }
                 else listGambar.add("");
-                pr.setGambar(listGambar);
+                materiPelajaran.setGambar(listGambar);
 
-                Call<PRTambahResponse> call = apiInterface.tambahPR(pr);
-                call.enqueue(new Callback<PRTambahResponse>() {
+                Call<MateriPelajaranTambahResponse> call = apiInterface.tambahMateriPelajaran(materiPelajaran);
+                call.enqueue(new Callback<MateriPelajaranTambahResponse>() {
                     @Override
-                    public void onResponse(Call<PRTambahResponse> call, Response<PRTambahResponse> response) {
-                        Toast.makeText(PRTambahActivity.this, "PR sudah ditambah", Toast.LENGTH_SHORT).show();
+                    public void onResponse(Call<MateriPelajaranTambahResponse> call, Response<MateriPelajaranTambahResponse> response) {
+                        Toast.makeText(MateriPelajaranTambahActivity.this, "Materi pelajaran sudah ditambah", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
-                    public void onFailure(Call<PRTambahResponse> call, Throwable t) {
+                    public void onFailure(Call<MateriPelajaranTambahResponse> call, Throwable t) {
                         t.printStackTrace();
                     }
                 });
@@ -178,13 +178,13 @@ public class PRTambahActivity extends AppCompatActivity {
 
     public void chooseGambarFromGallery() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
         startActivityForResult(galleryIntent, GALLERY_GAMBAR);
     }
 
     private void takeSoalGambarFromCamera() {
-        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, CAMERA_GAMBAR);
     }
 
@@ -220,7 +220,7 @@ public class PRTambahActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        sharedPreferences = getSharedPreferences(PR_TAMBAH, 0);
+        sharedPreferences = getSharedPreferences(MATERI_PELAJARAN_TAMBAH, 0);
         if (sharedPreferences.getString(ID_MATA_PELAJARAN, null) != null) {
             idMataPelajaran.setText(sharedPreferences.getString(ID_MATA_PELAJARAN, null));
         }

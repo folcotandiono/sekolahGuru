@@ -4,11 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-/**
- * Created by folcotandiono on 20/04/2018.
- */
-
-public class SoalUjianTambahResponse {
+public class MateriPelajaranTambahResponse {
     @SerializedName("message")
     private String message;
 

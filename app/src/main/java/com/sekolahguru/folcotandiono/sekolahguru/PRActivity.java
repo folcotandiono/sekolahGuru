@@ -16,6 +16,7 @@ import com.sekolahguru.folcotandiono.sekolahguru.adapter.SoalUjianAdapter;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiClient;
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiInterface;
 import com.sekolahguru.folcotandiono.sekolahguru.model.PR;
+import com.sekolahguru.folcotandiono.sekolahguru.model.PRGet;
 import com.sekolahguru.folcotandiono.sekolahguru.model.PRResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjian;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianResponse;
@@ -106,14 +107,14 @@ public class PRActivity extends AppCompatActivity {
         call.enqueue(new Callback<PRResponse>() {
             @Override
             public void onResponse(Call<PRResponse> call, Response<PRResponse> response) {
-                List<PR> listPR = response.body().getListPR();
+                List<PRGet> listPR = response.body().getListPR();
                 PRAdapter prAdapter = new PRAdapter(listPR);
                 recyclerView.setAdapter(prAdapter);
             }
 
             @Override
             public void onFailure(Call<PRResponse> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
     }

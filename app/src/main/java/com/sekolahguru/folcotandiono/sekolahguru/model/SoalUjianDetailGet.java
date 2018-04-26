@@ -1,17 +1,12 @@
 package com.sekolahguru.folcotandiono.sekolahguru.model;
 
-import android.graphics.Bitmap;
-
 import com.google.gson.annotations.SerializedName;
-
-import java.io.File;
-import java.util.List;
 
 /**
  * Created by folcotandiono on 20/04/2018.
  */
 
-public class SoalUjianDetail {
+public class SoalUjianDetailGet {
     @SerializedName("id")
     private String id;
     @SerializedName("id_soal_ujian")
@@ -25,11 +20,11 @@ public class SoalUjianDetail {
     @SerializedName("soal_tulisan")
     private String soalTulisan;
     @SerializedName("soal_gambar")
-    private List<String> soalGambar;
+    private String soalGambar;
     @SerializedName("pilihan_jawaban_tulisan")
     private String pilihanJawabanTulisan;
     @SerializedName("pilihan_jawaban_gambar")
-    private List<List<String>> pilihanJawabanGambar;
+    private String pilihanJawabanGambar;
     @SerializedName("kunci_jawaban")
     private String kunciJawaban;
 
@@ -81,20 +76,12 @@ public class SoalUjianDetail {
         this.soalTulisan = soalTulisan;
     }
 
-    public List<String> getSoalGambar() {
+    public String getSoalGambar() {
         return soalGambar;
     }
 
-    public void setSoalGambar(List<String> soalGambar) {
+    public void setSoalGambar(String soalGambar) {
         this.soalGambar = soalGambar;
-    }
-
-    public List<List<String>> getPilihanJawabanGambar() {
-        return pilihanJawabanGambar;
-    }
-
-    public void setPilihanJawabanGambar(List<List<String>> pilihanJawabanGambar) {
-        this.pilihanJawabanGambar = pilihanJawabanGambar;
     }
 
     public String getPilihanJawabanTulisan() {
@@ -103,6 +90,14 @@ public class SoalUjianDetail {
 
     public void setPilihanJawabanTulisan(String pilihanJawabanTulisan) {
         this.pilihanJawabanTulisan = pilihanJawabanTulisan;
+    }
+
+    public String getPilihanJawabanGambar() {
+        return pilihanJawabanGambar;
+    }
+
+    public void setPilihanJawabanGambar(String pilihanJawabanGambar) {
+        this.pilihanJawabanGambar = pilihanJawabanGambar;
     }
 
     public String getKunciJawaban() {

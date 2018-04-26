@@ -9,4 +9,7 @@
     <item
         android:id="@+id/pr"
         android:title="PR" />
+    <item
+        android:id="@+id/materi_pelajaran"
+        android:title="Materi Pelajaran" />
 </menu>

@@ -219,6 +219,10 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                     Toast.makeText(SoalUjianDetailTambahActivity.this, "Soal kosong", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (kunciJawaban.getText().toString().isEmpty()) {
+                    Toast.makeText(SoalUjianDetailTambahActivity.this, "Kunci jawaban kosong", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 SoalUjianDetail soalUjianDetail = new SoalUjianDetail();
                 soalUjianDetail.setIdSoalUjian(idSoalUjian.getText().toString());
                 soalUjianDetail.setIdJenisSoalUjianDetail(idJenisSoalUjianDetail.getText().toString());
@@ -227,11 +231,14 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                 List<String> listSoalGambar = new ArrayList<>();
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                ((BitmapDrawable) soalGambar.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] imageBytes = baos.toByteArray();
-                String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-                listSoalGambar.add(encodedImage);
-                soalUjianDetail.setSoalGambar(listSoalGambar.toString());
+                if (soalGambar.getDrawable() != null) {
+                    ((BitmapDrawable) soalGambar.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] imageBytes = baos.toByteArray();
+                    String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+                    listSoalGambar.add(encodedImage);
+                }
+                else listSoalGambar.add("");
+                soalUjianDetail.setSoalGambar(listSoalGambar);
 
                 List<String> listPilihanJawabanTulisan = new ArrayList<>();
                 listPilihanJawabanTulisan.add(pilihanJawabanATulisan.getText().toString());
@@ -245,49 +252,64 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
 
                 List<String> listPilihanJawabanAGambar = new ArrayList<>();
                 baos = new ByteArrayOutputStream();
-                ((BitmapDrawable) pilihanJawabanAGambar.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                imageBytes = baos.toByteArray();
-                encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-                listPilihanJawabanAGambar.add(encodedImage);
+                if (pilihanJawabanAGambar.getDrawable() != null) {
+                    ((BitmapDrawable) pilihanJawabanAGambar.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] imageBytes = baos.toByteArray();
+                    String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+                    listPilihanJawabanAGambar.add(encodedImage);
+                }
+                else listPilihanJawabanAGambar.add("");
 
                 listPilihanJawabanGambar.add(listPilihanJawabanAGambar);
 
                 List<String> listPilihanJawabanBGambar = new ArrayList<>();
                 baos = new ByteArrayOutputStream();
-                ((BitmapDrawable) pilihanJawabanBGambar.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                imageBytes = baos.toByteArray();
-                encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-                listPilihanJawabanBGambar.add(encodedImage);
+                if (pilihanJawabanBGambar.getDrawable() != null) {
+                    ((BitmapDrawable) pilihanJawabanBGambar.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] imageBytes = baos.toByteArray();
+                    String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+                    listPilihanJawabanBGambar.add(encodedImage);
+                }
+                else listPilihanJawabanBGambar.add("");
 
                 listPilihanJawabanGambar.add(listPilihanJawabanBGambar);
 
                 List<String> listPilihanJawabanCGambar = new ArrayList<>();
                 baos = new ByteArrayOutputStream();
-                ((BitmapDrawable) pilihanJawabanCGambar.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                imageBytes = baos.toByteArray();
-                encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-                listPilihanJawabanCGambar.add(encodedImage);
+                if (pilihanJawabanCGambar.getDrawable() != null) {
+                    ((BitmapDrawable) pilihanJawabanCGambar.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] imageBytes = baos.toByteArray();
+                    String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+                    listPilihanJawabanCGambar.add(encodedImage);
+                }
+                else listPilihanJawabanCGambar.add("");
 
                 listPilihanJawabanGambar.add(listPilihanJawabanCGambar);
 
                 List<String> listPilihanJawabanDGambar = new ArrayList<>();
                 baos = new ByteArrayOutputStream();
-                ((BitmapDrawable) pilihanJawabanDGambar.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                imageBytes = baos.toByteArray();
-                encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-                listPilihanJawabanDGambar.add(encodedImage);
+                if (pilihanJawabanDGambar.getDrawable() != null) {
+                    ((BitmapDrawable) pilihanJawabanDGambar.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] imageBytes = baos.toByteArray();
+                    String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+                    listPilihanJawabanDGambar.add(encodedImage);
+                }
+                else listPilihanJawabanDGambar.add("");
 
                 listPilihanJawabanGambar.add(listPilihanJawabanDGambar);
 
                 List<String> listPilihanJawabanEGambar = new ArrayList<>();
                 baos = new ByteArrayOutputStream();
-                ((BitmapDrawable) pilihanJawabanEGambar.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                imageBytes = baos.toByteArray();
-                encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-                listPilihanJawabanEGambar.add(encodedImage);
+                if (pilihanJawabanEGambar.getDrawable() != null) {
+                    ((BitmapDrawable) pilihanJawabanEGambar.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] imageBytes = baos.toByteArray();
+                    String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+                    listPilihanJawabanEGambar.add(encodedImage);
+                }
+                else listPilihanJawabanEGambar.add("");
 
                 listPilihanJawabanGambar.add(listPilihanJawabanEGambar);
-                soalUjianDetail.setPilihanJawabanGambar(listPilihanJawabanGambar.toString());
+                soalUjianDetail.setPilihanJawabanGambar(listPilihanJawabanGambar);
 
                 soalUjianDetail.setKunciJawaban(kunciJawaban.getText().toString());
 
@@ -300,7 +322,7 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<SoalUjianDetailTambahResponse> call, Throwable t) {
-
+                        t.printStackTrace();
                     }
                 });
             }

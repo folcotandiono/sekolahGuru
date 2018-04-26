@@ -8,7 +8,7 @@ import java.util.List;
  * Created by folcotandiono on 4/25/2018.
  */
 
-public class PR {
+public class PRGet {
     @SerializedName("id")
     private String id;
     @SerializedName("nama")
@@ -16,7 +16,7 @@ public class PR {
     @SerializedName("deskripsi")
     private String deskripsi;
     @SerializedName("gambar")
-    private List<String> gambar;
+    private String gambar;
     @SerializedName("id_mata_pelajaran")
     private String idMataPelajaran;
     @SerializedName("nama_mata_pelajaran")
@@ -46,11 +46,11 @@ public class PR {
         this.deskripsi = deskripsi;
     }
 
-    public List<String> getGambar() {
+    public String getGambar() {
         return gambar;
     }
 
-    public void setGambar(List<String> gambar) {
+    public void setGambar(String gambar) {
         this.gambar = gambar;
     }
 

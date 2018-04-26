@@ -33,7 +33,10 @@
         <activity android:name=".JadwalUjianTambahSoalUjianActivity" />
         <activity android:name=".PRActivity" />
         <activity android:name=".PRTambahActivity" />
-        <activity android:name=".PRTambahMataPelajaranActivity"></activity>
+        <activity android:name=".PRTambahMataPelajaranActivity" />
+        <activity android:name=".MateriPelajaranActivity"></activity>
+        <activity android:name=".MateriPelajaranTambahActivity"></activity>
+        <activity android:name=".MateriPelajaranTambahMataPelajaranActivity"></activity>
     </application>
 
 </manifest>

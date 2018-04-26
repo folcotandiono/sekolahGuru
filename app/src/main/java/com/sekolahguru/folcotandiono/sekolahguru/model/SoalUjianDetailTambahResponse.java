@@ -9,14 +9,14 @@ import java.util.List;
  */
 
 public class SoalUjianDetailTambahResponse {
-    @SerializedName("list_soal_ujian_detail")
-    private List<SoalUjianDetail> listSoalUjianDetail;
+    @SerializedName("message")
+    private String message;
 
-    public List<SoalUjianDetail> getListSoalUjianDetail() {
-        return listSoalUjianDetail;
+    public String getMessage() {
+        return message;
     }
 
-    public void setListSoalUjianDetail(List<SoalUjianDetail> listSoalUjianDetail) {
-        this.listSoalUjianDetail = listSoalUjianDetail;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

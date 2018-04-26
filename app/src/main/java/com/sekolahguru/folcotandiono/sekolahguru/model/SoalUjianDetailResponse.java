@@ -10,13 +10,13 @@ import java.util.List;
 
 public class SoalUjianDetailResponse {
     @SerializedName("list_soal_ujian_detail")
-    private List<SoalUjianDetail> listSoalUjianDetail;
+    private List<SoalUjianDetailGet> listSoalUjianDetail;
 
-    public List<SoalUjianDetail> getListSoalUjianDetail() {
+    public List<SoalUjianDetailGet> getListSoalUjianDetail() {
         return listSoalUjianDetail;
     }
 
-    public void setListSoalUjianDetail(List<SoalUjianDetail> listSoalUjianDetail) {
+    public void setListSoalUjianDetail(List<SoalUjianDetailGet> listSoalUjianDetail) {
         this.listSoalUjianDetail = listSoalUjianDetail;
     }
 }

@@ -10,13 +10,13 @@ import java.util.List;
 
 public class PRResponse {
     @SerializedName("list_pr")
-    public List<PR> listPR;
+    public List<PRGet> listPR;
 
-    public List<PR> getListPR() {
+    public List<PRGet> getListPR() {
         return listPR;
     }
 
-    public void setListPR(List<PR> listPR) {
+    public void setListPR(List<PRGet> listPR) {
         this.listPR = listPR;
     }
 }

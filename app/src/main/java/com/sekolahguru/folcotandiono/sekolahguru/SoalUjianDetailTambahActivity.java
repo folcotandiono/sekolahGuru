@@ -182,7 +182,7 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                         RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
                 intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
-                        "Soal");
+                        "Bicaralah");
                 try {
                     startActivityForResult(intent, REKAM);
                 } catch (ActivityNotFoundException a) {

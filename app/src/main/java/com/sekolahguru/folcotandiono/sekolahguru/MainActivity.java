@@ -102,6 +102,16 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), MateriPelajaranActivity.class);
                         startActivity(intent);
                     }
+                    else if (menuItem.getItemId() == R.id.log_out) {
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+
+                        sharedPreferences = getSharedPreferences(LOGIN, 0);
+                        editor = sharedPreferences.edit();
+                        editor.putString(ID, null);
+                        editor.commit();
+
+                        startActivity(intent);
+                    }
                     homeDrawerLayout.closeDrawers();
                     return true;
                 }

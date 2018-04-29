@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         initObject();
         initListener();
 
+        sharedPreferences = getSharedPreferences(LOGIN, 0);
         if (sharedPreferences.getString(ID, null) != null) {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);

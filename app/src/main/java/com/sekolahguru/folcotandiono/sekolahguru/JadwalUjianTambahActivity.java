@@ -99,7 +99,7 @@ public class JadwalUjianTambahActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Tambah soal ujian");
+        getSupportActionBar().setTitle("Tambah jadwal ujian");
     }
 
     private void initListener() {

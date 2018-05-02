@@ -9,6 +9,9 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -36,9 +39,10 @@
         <activity android:name=".PRActivity" />
         <activity android:name=".PRTambahActivity" />
         <activity android:name=".PRTambahMataPelajaranActivity" />
-        <activity android:name=".MateriPelajaranActivity"></activity>
-        <activity android:name=".MateriPelajaranTambahActivity"></activity>
-        <activity android:name=".MateriPelajaranTambahMataPelajaranActivity"></activity>
+        <activity android:name=".MateriPelajaranActivity" />
+        <activity android:name=".MateriPelajaranTambahActivity" />
+        <activity android:name=".MateriPelajaranTambahMataPelajaranActivity" />
+        <activity android:name=".KonfigurasiIpActivity"></activity>
     </application>
 
 </manifest>

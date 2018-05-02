@@ -55,7 +55,7 @@ public class SoalUjianDetailActivity extends AppCompatActivity {
     }
 
     private void initObject() {
-        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        apiInterface = ApiClient.getClient(getApplicationContext()).create(ApiInterface.class);
 
         setSupportActionBar(soalUjianDetailToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

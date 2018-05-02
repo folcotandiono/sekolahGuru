@@ -76,7 +76,7 @@ public class SoalUjianTambahActivity extends AppCompatActivity {
     }
 
     private void initObject() {
-        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        apiInterface = ApiClient.getClient(getApplicationContext()).create(ApiInterface.class);
         sharedPreferences = getApplicationContext().getSharedPreferences(SOAL_UJIAN_TAMBAH, 0);
         editor = sharedPreferences.edit();
 

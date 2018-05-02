@@ -1,13 +1,17 @@
 package com.sekolahguru.folcotandiono.sekolahguru;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -25,6 +29,7 @@ import com.sekolahguru.folcotandiono.sekolahguru.model.MateriPelajaran;
 import com.sekolahguru.folcotandiono.sekolahguru.model.MateriPelajaranTambahResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.PR;
 import com.sekolahguru.folcotandiono.sekolahguru.model.PRTambahResponse;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -83,7 +88,7 @@ public class MateriPelajaranTambahActivity extends AppCompatActivity {
     }
 
     private void initObject() {
-        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        apiInterface = ApiClient.getClient(getApplicationContext()).create(ApiInterface.class);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -168,7 +173,16 @@ public class MateriPelajaranTambahActivity extends AppCompatActivity {
                                 chooseGambarFromGallery();
                                 break;
                             case 1:
-                                takeSoalGambarFromCamera();
+                                if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                                    Manifest.permission.CAMERA)
+                                    != PackageManager.PERMISSION_GRANTED) {
+                                        ActivityCompat.requestPermissions(MateriPelajaranTambahActivity.this,
+                                        new String[]{Manifest.permission.CAMERA},
+                                        0);
+
+                                } else {
+                                    takeSoalGambarFromCamera();
+                                }
                                 break;
                         }
                     }
@@ -202,8 +216,8 @@ public class MateriPelajaranTambahActivity extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
 //                    String path = saveImage(bitmap);
 //                    Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-                    gambar.setImageBitmap(bitmap);
-
+//                    gambar.setImageBitmap(bitmap);
+                    Picasso.get().load(contentURI).into(gambar);
                 } catch (IOException e) {
                     e.printStackTrace();
 //                    Toast.makeText(MainActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
@@ -211,8 +225,10 @@ public class MateriPelajaranTambahActivity extends AppCompatActivity {
             }
 
         } else if (requestCode == CAMERA_GAMBAR) {
-            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-            gambar.setImageBitmap(thumbnail);
+            Uri contentURI = data.getData();
+//            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+//            gambar.setImageBitmap(thumbnail);
+            Picasso.get().load(contentURI).into(gambar);
 //            saveImage(thumbnail);
 //            Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
         }

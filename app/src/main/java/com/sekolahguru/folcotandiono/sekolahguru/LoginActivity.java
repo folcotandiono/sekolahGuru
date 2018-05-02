@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiClient;
@@ -28,9 +29,11 @@ public class LoginActivity extends AppCompatActivity {
     private ApiInterface apiInterface;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+    private TextView konfigurasiIp;
 
     public static String LOGIN = "login";
     public static String ID = "id";
+    public static String IP_ADDRESS = "ip_address";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +56,11 @@ public class LoginActivity extends AppCompatActivity {
         loginId = findViewById(R.id.login_id);
         loginPassword = findViewById(R.id.login_password);
         loginLogin = findViewById(R.id.login_login);
+        konfigurasiIp = findViewById(R.id.konfigurasi_ip);
     }
 
     private void initObject() {
-        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        apiInterface = ApiClient.getClient(getApplicationContext()).create(ApiInterface.class);
         sharedPreferences = getApplicationContext().getSharedPreferences(LOGIN, 0);
         editor = sharedPreferences.edit();
     }
@@ -81,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                 guru.setId(id);
                 guru.setPassword(password);
 
+                apiInterface = ApiClient.getClient(getApplicationContext()).create(ApiInterface.class);
                 Call<GuruLoginResponse> call = apiInterface.login(guru);
                 call.enqueue(new Callback<GuruLoginResponse>() {
                     @Override
@@ -104,6 +109,13 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 });
+            }
+        });
+        konfigurasiIp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), KonfigurasiIpActivity.class);
+                startActivity(intent);
             }
         });
     }

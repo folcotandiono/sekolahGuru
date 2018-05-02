@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        apiInterface = ApiClient.getClient(getApplicationContext()).create(ApiInterface.class);
     }
 
     private void initListener() {
@@ -111,6 +111,8 @@ public class MainActivity extends AppCompatActivity {
                         editor.commit();
 
                         startActivity(intent);
+
+                        finish();
                     }
                     homeDrawerLayout.closeDrawers();
                     return true;

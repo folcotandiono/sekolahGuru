@@ -42,6 +42,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/konfigurasi_ip"
+                android:text="konfigurasi ip"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
     </RelativeLayout>

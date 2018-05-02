@@ -67,7 +67,7 @@ public class SoalUjianActivity extends AppCompatActivity {
         RecyclerView.LayoutManager soalUjianLayoutManager = new LinearLayoutManager(this);
         soalUjianRecyclerView.setLayoutManager(soalUjianLayoutManager);
 
-        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        apiInterface = ApiClient.getClient(getApplicationContext()).create(ApiInterface.class);
     }
 
     private void initListener() {

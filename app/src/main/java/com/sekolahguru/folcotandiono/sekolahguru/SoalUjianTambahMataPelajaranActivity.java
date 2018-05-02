@@ -54,7 +54,7 @@ public class SoalUjianTambahMataPelajaranActivity extends AppCompatActivity {
     }
 
     private void initObject() {
-        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        apiInterface = ApiClient.getClient(getApplicationContext()).create(ApiInterface.class);
         sharedPreferences = getApplicationContext().getSharedPreferences(LOGIN, 0);
         editor = sharedPreferences.edit();
 

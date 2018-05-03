@@ -1,12 +1,16 @@
 package com.sekolahguru.folcotandiono.sekolahguru;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiClient;
@@ -25,6 +30,7 @@ import com.sekolahguru.folcotandiono.sekolahguru.model.PR;
 import com.sekolahguru.folcotandiono.sekolahguru.model.PRTambahResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetail;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetailResponse;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -39,6 +45,7 @@ public class PRTambahActivity extends AppCompatActivity {
 
     private static final int GALLERY_GAMBAR = 0;
     private static final int CAMERA_GAMBAR = 1;
+    private static final int CAMERA_PERMISSION_GAMBAR = 2;
 
     public static String PR_TAMBAH = "pr_tambah";
     public static String ID_MATA_PELAJARAN = "id_mata_pelajaran";
@@ -168,7 +175,16 @@ public class PRTambahActivity extends AppCompatActivity {
                                 chooseGambarFromGallery();
                                 break;
                             case 1:
-                                takeSoalGambarFromCamera();
+                                if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                                        Manifest.permission.CAMERA)
+                                        != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(PRTambahActivity.this,
+                                            new String[]{Manifest.permission.CAMERA},
+                                            CAMERA_PERMISSION_GAMBAR);
+
+                                } else {
+                                    takeSoalGambarFromCamera();
+                                }
                                 break;
                         }
                     }
@@ -202,7 +218,8 @@ public class PRTambahActivity extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
 //                    String path = saveImage(bitmap);
 //                    Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-                    gambar.setImageBitmap(bitmap);
+//                    gambar.setImageBitmap(bitmap);
+                    Picasso.get().load(contentURI).resize(1000, 1000).into(gambar);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -212,9 +229,15 @@ public class PRTambahActivity extends AppCompatActivity {
 
         } else if (requestCode == CAMERA_GAMBAR) {
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(1000, 1000);
+            gambar.setLayoutParams(layoutParams);
             gambar.setImageBitmap(thumbnail);
 //            saveImage(thumbnail);
 //            Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
+        } else if (requestCode == CAMERA_PERMISSION_GAMBAR) {
+            takeSoalGambarFromCamera();
         }
     }
 

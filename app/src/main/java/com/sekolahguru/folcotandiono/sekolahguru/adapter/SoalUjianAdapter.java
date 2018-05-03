@@ -38,16 +38,12 @@ public class SoalUjianAdapter extends RecyclerView.Adapter<SoalUjianAdapter.View
         private TextView nama;
         private TextView idMataPelajaran;
         private TextView namaMataPelajaran;
-        private TextView idGuru;
-        private TextView namaGuru;
         public ViewHolder(View v) {
             super(v);
             id = v.findViewById(R.id.id);
             nama = v.findViewById(R.id.nama);
             idMataPelajaran = v.findViewById(R.id.id_mata_pelajaran);
             namaMataPelajaran = v.findViewById(R.id.nama_mata_pelajaran);
-            idGuru = v.findViewById(R.id.id_guru);
-            namaGuru = v.findViewById(R.id.nama_guru);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -91,8 +87,6 @@ public class SoalUjianAdapter extends RecyclerView.Adapter<SoalUjianAdapter.View
         holder.nama.setText(listSoalUjian.get(position).getNama());
         holder.idMataPelajaran.setText(listSoalUjian.get(position).getIdMataPelajaran());
         holder.namaMataPelajaran.setText(listSoalUjian.get(position).getNamaMataPelajaran());
-        holder.idGuru.setText(listSoalUjian.get(position).getIdGuru());
-        holder.namaGuru.setText(listSoalUjian.get(position).getNamaGuru());
     }
 
     // Return the size of your dataset (invoked by the layout manager)

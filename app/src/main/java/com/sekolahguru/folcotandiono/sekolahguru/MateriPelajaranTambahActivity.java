@@ -16,11 +16,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.sekolahguru.folcotandiono.sekolahguru.api.ApiClient;
@@ -44,6 +46,7 @@ public class MateriPelajaranTambahActivity extends AppCompatActivity {
 
     private static final int GALLERY_GAMBAR = 0;
     private static final int CAMERA_GAMBAR = 1;
+    private static final int CAMERA_PERMISSION_GAMBAR = 2;
 
     public static String MATERI_PELAJARAN_TAMBAH = "materi_pelajaran_tambah";
     public static String ID_MATA_PELAJARAN = "id_mata_pelajaran";
@@ -178,7 +181,7 @@ public class MateriPelajaranTambahActivity extends AppCompatActivity {
                                     != PackageManager.PERMISSION_GRANTED) {
                                         ActivityCompat.requestPermissions(MateriPelajaranTambahActivity.this,
                                         new String[]{Manifest.permission.CAMERA},
-                                        0);
+                                        CAMERA_PERMISSION_GAMBAR);
 
                                 } else {
                                     takeSoalGambarFromCamera();
@@ -217,7 +220,7 @@ public class MateriPelajaranTambahActivity extends AppCompatActivity {
 //                    String path = saveImage(bitmap);
 //                    Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
 //                    gambar.setImageBitmap(bitmap);
-                    Picasso.get().load(contentURI).into(gambar);
+                    Picasso.get().load(contentURI).resize(1000, 1000).into(gambar);
                 } catch (IOException e) {
                     e.printStackTrace();
 //                    Toast.makeText(MainActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
@@ -225,12 +228,18 @@ public class MateriPelajaranTambahActivity extends AppCompatActivity {
             }
 
         } else if (requestCode == CAMERA_GAMBAR) {
-            Uri contentURI = data.getData();
-//            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-//            gambar.setImageBitmap(thumbnail);
-            Picasso.get().load(contentURI).into(gambar);
+//            Uri contentUri = data.getData();
+            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(1000, 1000);
+            gambar.setLayoutParams(layoutParams);
+            gambar.setImageBitmap(thumbnail);
 //            saveImage(thumbnail);
 //            Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
+        }
+        else if (requestCode == CAMERA_PERMISSION_GAMBAR) {
+            takeSoalGambarFromCamera();
         }
     }
 

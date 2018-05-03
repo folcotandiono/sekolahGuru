@@ -1,14 +1,18 @@
 package com.sekolahguru.folcotandiono.sekolahguru;
 
+import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.speech.RecognizerIntent;
 
@@ -27,6 +32,7 @@ import com.sekolahguru.folcotandiono.sekolahguru.api.ApiInterface;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetail;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetailResponse;
 import com.sekolahguru.folcotandiono.sekolahguru.model.SoalUjianDetailTambahResponse;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -54,6 +60,12 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
     private static final int GALLERY_PILIHAN_JAWABAN_E_GAMBAR = 10;
     private static final int CAMERA_PILIHAN_JAWABAN_E_GAMBAR = 11;
     private static final int REKAM = 12;
+    private static final int CAMERA_PERMISSION_SOAL_GAMBAR = 13;
+    private static final int CAMERA_PERMISSION_PILIHAN_JAWABAN_A_GAMBAR = 14;
+    private static final int CAMERA_PERMISSION_PILIHAN_JAWABAN_B_GAMBAR = 15;
+    private static final int CAMERA_PERMISSION_PILIHAN_JAWABAN_C_GAMBAR = 16;
+    private static final int CAMERA_PERMISSION_PILIHAN_JAWABAN_D_GAMBAR = 17;
+    private static final int CAMERA_PERMISSION_PILIHAN_JAWABAN_E_GAMBAR = 18;
 
     public static String SOAL_UJIAN_DETAIL_TAMBAH = "soal_ujian_detail_tambah";
     public static String ID_SOAL_UJIAN = "id_soal_ujian";
@@ -368,7 +380,15 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                                 chooseSoalGambarFromGallery();
                                 break;
                             case 1:
-                                takeSoalGambarFromCamera();
+                                if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                                        Manifest.permission.CAMERA)
+                                        != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(SoalUjianDetailTambahActivity.this,
+                                            new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_SOAL_GAMBAR);
+
+                                } else {
+                                    takeSoalGambarFromCamera();
+                                }
                                 break;
                         }
                     }
@@ -403,7 +423,16 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                                 choosePilihanJawabanAGambarFromGallery();
                                 break;
                             case 1:
-                                takePilihanJawabanAGambarFromCamera();
+                                if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                                        Manifest.permission.CAMERA)
+                                        != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(SoalUjianDetailTambahActivity.this,
+                                            new String[]{Manifest.permission.CAMERA},
+                                            CAMERA_PERMISSION_PILIHAN_JAWABAN_A_GAMBAR);
+
+                                } else {
+                                    takePilihanJawabanAGambarFromCamera();
+                                }
                                 break;
                         }
                     }
@@ -438,7 +467,16 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                                 choosePilihanJawabanBGambarFromGallery();
                                 break;
                             case 1:
-                                takePilihanJawabanBGambarFromCamera();
+                                if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                                        Manifest.permission.CAMERA)
+                                        != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(SoalUjianDetailTambahActivity.this,
+                                            new String[]{Manifest.permission.CAMERA},
+                                            CAMERA_PERMISSION_PILIHAN_JAWABAN_B_GAMBAR);
+
+                                } else {
+                                    takePilihanJawabanBGambarFromCamera();
+                                }
                                 break;
                         }
                     }
@@ -473,7 +511,16 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                                 choosePilihanJawabanCGambarFromGallery();
                                 break;
                             case 1:
-                                takePilihanJawabanCGambarFromCamera();
+                                if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                                        Manifest.permission.CAMERA)
+                                        != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(SoalUjianDetailTambahActivity.this,
+                                            new String[]{Manifest.permission.CAMERA},
+                                            CAMERA_PERMISSION_PILIHAN_JAWABAN_C_GAMBAR);
+
+                                } else {
+                                    takePilihanJawabanCGambarFromCamera();
+                                }
                                 break;
                         }
                     }
@@ -508,7 +555,16 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                                 choosePilihanJawabanDGambarFromGallery();
                                 break;
                             case 1:
-                                takePilihanJawabanDGambarFromCamera();
+                                if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                                        Manifest.permission.CAMERA)
+                                        != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(SoalUjianDetailTambahActivity.this,
+                                            new String[]{Manifest.permission.CAMERA},
+                                            CAMERA_PERMISSION_PILIHAN_JAWABAN_D_GAMBAR);
+
+                                } else {
+                                    takePilihanJawabanDGambarFromCamera();
+                                }
                                 break;
                         }
                     }
@@ -543,7 +599,16 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                                 choosePilihanJawabanEGambarFromGallery();
                                 break;
                             case 1:
-                                takePilihanJawabanEGambarFromCamera();
+                                if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                                        Manifest.permission.CAMERA)
+                                        != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(SoalUjianDetailTambahActivity.this,
+                                            new String[]{Manifest.permission.CAMERA},
+                                            CAMERA_PERMISSION_PILIHAN_JAWABAN_E_GAMBAR);
+
+                                } else {
+                                    takePilihanJawabanEGambarFromCamera();
+                                }
                                 break;
                         }
                     }
@@ -577,8 +642,8 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
 //                    String path = saveImage(bitmap);
 //                    Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-                    soalGambar.setImageBitmap(bitmap);
-
+//                    soalGambar.setImageBitmap(bitmap);
+                    Picasso.get().load(contentURI).resize(1000, 1000).into(soalGambar);
                 } catch (IOException e) {
                     e.printStackTrace();
 //                    Toast.makeText(MainActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
@@ -587,6 +652,10 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
 
         } else if (requestCode == CAMERA_SOAL_GAMBAR) {
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(1000, 1000);
+            soalGambar.setLayoutParams(layoutParams);
             soalGambar.setImageBitmap(thumbnail);
 //            saveImage(thumbnail);
 //            Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
@@ -598,8 +667,8 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
 //                    String path = saveImage(bitmap);
 //                    Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-                    pilihanJawabanAGambar.setImageBitmap(bitmap);
-
+//                    pilihanJawabanAGambar.setImageBitmap(bitmap);
+                    Picasso.get().load(contentURI).resize(1000, 1000).into(pilihanJawabanAGambar);
                 } catch (IOException e) {
                     e.printStackTrace();
 //                    Toast.makeText(MainActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
@@ -607,7 +676,13 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
             }
 
         } else if (requestCode == CAMERA_PILIHAN_JAWABAN_A_GAMBAR) {
+//            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+//            pilihanJawabanAGambar.setImageBitmap(thumbnail);
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(1000, 1000);
+            pilihanJawabanAGambar.setLayoutParams(layoutParams);
             pilihanJawabanAGambar.setImageBitmap(thumbnail);
 //            saveImage(thumbnail);
 //            Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
@@ -619,8 +694,8 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
 //                    String path = saveImage(bitmap);
 //                    Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-                    pilihanJawabanBGambar.setImageBitmap(bitmap);
-
+//                    pilihanJawabanBGambar.setImageBitmap(bitmap);
+                    Picasso.get().load(contentURI).resize(1000, 1000).into(pilihanJawabanBGambar);
                 } catch (IOException e) {
                     e.printStackTrace();
 //                    Toast.makeText(MainActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
@@ -628,7 +703,13 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
             }
 
         } else if (requestCode == CAMERA_PILIHAN_JAWABAN_B_GAMBAR) {
+//            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+//            pilihanJawabanBGambar.setImageBitmap(thumbnail);
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(1000, 1000);
+            pilihanJawabanBGambar.setLayoutParams(layoutParams);
             pilihanJawabanBGambar.setImageBitmap(thumbnail);
 //            saveImage(thumbnail);
 //            Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
@@ -640,8 +721,8 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
 //                    String path = saveImage(bitmap);
 //                    Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-                    pilihanJawabanCGambar.setImageBitmap(bitmap);
-
+//                    pilihanJawabanCGambar.setImageBitmap(bitmap);
+                    Picasso.get().load(contentURI).resize(1000, 1000).into(pilihanJawabanCGambar);
                 } catch (IOException e) {
                     e.printStackTrace();
 //                    Toast.makeText(MainActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
@@ -649,7 +730,13 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
             }
 
         } else if (requestCode == CAMERA_PILIHAN_JAWABAN_C_GAMBAR) {
+//            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+//            pilihanJawabanCGambar.setImageBitmap(thumbnail);
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(1000, 1000);
+            pilihanJawabanCGambar.setLayoutParams(layoutParams);
             pilihanJawabanCGambar.setImageBitmap(thumbnail);
 //            saveImage(thumbnail);
 //            Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
@@ -661,8 +748,8 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
 //                    String path = saveImage(bitmap);
 //                    Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-                    pilihanJawabanDGambar.setImageBitmap(bitmap);
-
+//                    pilihanJawabanDGambar.setImageBitmap(bitmap);
+                    Picasso.get().load(contentURI).resize(1000, 1000).into(pilihanJawabanDGambar);
                 } catch (IOException e) {
                     e.printStackTrace();
 //                    Toast.makeText(MainActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
@@ -670,7 +757,13 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
             }
 
         } else if (requestCode == CAMERA_PILIHAN_JAWABAN_D_GAMBAR) {
+//            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+//            pilihanJawabanDGambar.setImageBitmap(thumbnail);
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(1000, 1000);
+            pilihanJawabanDGambar.setLayoutParams(layoutParams);
             pilihanJawabanDGambar.setImageBitmap(thumbnail);
 //            saveImage(thumbnail);
 //            Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
@@ -682,8 +775,8 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
 //                    String path = saveImage(bitmap);
 //                    Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-                    pilihanJawabanEGambar.setImageBitmap(bitmap);
-
+//                    pilihanJawabanEGambar.setImageBitmap(bitmap);
+                    Picasso.get().load(contentURI).resize(1000, 1000).into(pilihanJawabanEGambar);
                 } catch (IOException e) {
                     e.printStackTrace();
 //                    Toast.makeText(MainActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
@@ -691,7 +784,13 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
             }
 
         } else if (requestCode == CAMERA_PILIHAN_JAWABAN_E_GAMBAR) {
+//            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+//            pilihanJawabanEGambar.setImageBitmap(thumbnail);
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(1000, 1000);
+            pilihanJawabanEGambar.setLayoutParams(layoutParams);
             pilihanJawabanEGambar.setImageBitmap(thumbnail);
 //            saveImage(thumbnail);
 //            Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
@@ -702,6 +801,18 @@ public class SoalUjianDetailTambahActivity extends AppCompatActivity {
                         .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                 soalTulisan.setText(result.get(0));
             }
+        } else if (requestCode == CAMERA_PERMISSION_SOAL_GAMBAR) {
+            takeSoalGambarFromCamera();
+        } else if (requestCode == CAMERA_PERMISSION_PILIHAN_JAWABAN_A_GAMBAR) {
+            takePilihanJawabanAGambarFromCamera();
+        } else if (requestCode == CAMERA_PERMISSION_PILIHAN_JAWABAN_B_GAMBAR) {
+            takePilihanJawabanBGambarFromCamera();
+        } else if (requestCode == CAMERA_PERMISSION_PILIHAN_JAWABAN_C_GAMBAR) {
+            takePilihanJawabanCGambarFromCamera();
+        } else if (requestCode == CAMERA_PERMISSION_PILIHAN_JAWABAN_D_GAMBAR) {
+            takePilihanJawabanDGambarFromCamera();
+        } else if (requestCode == CAMERA_PERMISSION_PILIHAN_JAWABAN_E_GAMBAR) {
+            takePilihanJawabanEGambarFromCamera();
         }
     }
 

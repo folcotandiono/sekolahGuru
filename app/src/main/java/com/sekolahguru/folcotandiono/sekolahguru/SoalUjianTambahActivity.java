@@ -116,7 +116,6 @@ public class SoalUjianTambahActivity extends AppCompatActivity {
                 SoalUjian soalUjian = new SoalUjian();
                 soalUjian.setIdMataPelajaran(idMataPelajaran);
                 sharedPreferences = getApplicationContext().getSharedPreferences(LOGIN, 0);
-                soalUjian.setIdGuru(sharedPreferences.getString(ID, null));
                 soalUjian.setNama(nama);
 
                 Call<SoalUjianTambahResponse> call = apiInterface.tambahSoalUjian(soalUjian);
